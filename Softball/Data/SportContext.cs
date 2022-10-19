@@ -11,7 +11,7 @@ namespace Sport.Data
         public DbSet<Training> Training { get; set; }
         public DbSet<Game> Games { get; set; }
 
-        public SportContext(DbContextOptions<SportContext> options): base(options) { }
+        public SportContext(DbContextOptions<Sport.Data.SportContext> options): base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=Data/Sport.db");

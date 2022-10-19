@@ -18,13 +18,13 @@ namespace Sport.Models
 
 
         //parameterless constructor for EF migration
-        private Player() : this(0, "", "", DateOnly.FromDateTime(DateTime.Now)) { }
+        private Player() : this(0, "", "", DateTime.Now) { }
 
-        public Player(int? playerNumber, Person person) : this(playerNumber,person.FirstName, person.LastName, (DateOnly)person.BirthDate)
+        public Player(int? playerNumber, Person person) : this(playerNumber,person.FirstName, person.LastName, person.BirthDate)
         {
         }
 
-        public Player(int? playerNumber, string firstName, string lastName, DateOnly birthDate) : base(firstName, lastName, birthDate)
+        public Player(int? playerNumber, string firstName, string lastName, DateTime? birthDate) : base(firstName, lastName, birthDate)
         {
             PlayerNumber = playerNumber;
             Teams = new List<Team>();

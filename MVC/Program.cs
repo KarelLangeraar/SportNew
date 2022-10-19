@@ -1,7 +1,14 @@
+using Microsoft.EntityFrameworkCore;
+using Sport.Data;
+using Microsoft.Extensions.DependencyInjection;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
+var connectionString = builder.Configuration.GetConnectionString("Sport");
+builder.Services.AddDbContext<Sport.Data.SportContext>(options => options.UseSqlite(connectionString, b => b.MigrationsAssembly("Sport")));
 
 var app = builder.Build();
 

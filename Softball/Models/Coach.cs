@@ -21,7 +21,7 @@ namespace Sport.Models
         {
         }
 
-        public Coach(string firstName, string lastName, DateOnly? birthDate) : base(firstName, lastName, birthDate)
+        public Coach(string firstName, string lastName, DateTime? birthDate) : base(firstName, lastName, birthDate)
         {
             Teams = new List<Team>();
             Training = new List<Training>();
