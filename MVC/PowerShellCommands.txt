@@ -1,0 +1,14 @@
+﻿
+DATABASE
+dotnet ef migrations add DatabaseUpdate1 --startup-project ../MVC    --> vanuit 'Sport'
+dotnet ef database update --startup-project ../MVC                   --> vanuit 'Sport'
+
+MVC CONTROLLER
+dotnet aspnet-codegenerator controller -name ClubController -m Club -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name TeamController -m Team -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name PlayerController -m Player -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name CoachController -m Coach -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name GameController -m Game -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name TrainingController -m Training -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name AdressController -m Adress -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries
+dotnet aspnet-codegenerator controller -name ScoreController -m Score -dc Sport.Data.SportContext --relativeFolderPath Controllers --useDefaultLayout --referenceScriptLibraries

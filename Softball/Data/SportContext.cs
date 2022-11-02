@@ -7,11 +7,16 @@ namespace Sport.Data
 {
     public class SportContext : DbContext
     {
-        public DbSet<Club> Clubs { get; set; }
+        public DbSet<Club> Club { get; set; }
+        public DbSet<Team> Team { get; set; }
+        public DbSet<Player> Player { get; set; }
+        public DbSet<Coach> Coach { get; set; }
         public DbSet<Training> Training { get; set; }
-        public DbSet<Game> Games { get; set; }
+        public DbSet<Game> Game { get; set; }
+        public DbSet<Score> Score { get; set; }
+        public DbSet<Adress> Adress { get; set; }
 
-        public SportContext(DbContextOptions<Sport.Data.SportContext> options): base(options) { }
+        public SportContext(DbContextOptions<SportContext> options): base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
             => options.UseSqlite("Data Source=Data/Sport.db");

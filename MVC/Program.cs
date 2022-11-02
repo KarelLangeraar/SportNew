@@ -1,6 +1,8 @@
 using Microsoft.EntityFrameworkCore;
 using Sport.Data;
 using Microsoft.Extensions.DependencyInjection;
+using SportData.Data.Domain.Interfaces;
+using MVC.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +11,7 @@ builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("Sport");
 builder.Services.AddDbContext<Sport.Data.SportContext>(options => options.UseSqlite(connectionString, b => b.MigrationsAssembly("Sport")));
-
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

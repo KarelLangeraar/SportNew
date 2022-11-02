@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Softball\Sport.csproj" />
+    <Compile Remove="Views\Adress\_adressShowEditPartial.cs" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Data\" />
+    <ProjectReference Include="..\Softball\SportData.csproj" />
   </ItemGroup>
 
   <ItemGroup>
