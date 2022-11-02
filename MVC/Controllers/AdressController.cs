@@ -41,9 +41,9 @@ namespace MVC.Controllers
         // POST _ShowEdit
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ShowEdit(int? id,[Bind("AdressId,Street,StreetNumber,StreetNumberAddition,Zipcode,City,PhoneNumber,Edit")] AdressViewModel adress)
+        public async Task<IActionResult> ShowEdit([Bind("AdressId,Street,StreetNumber,StreetNumberAddition,Zipcode,City,PhoneNumber,Edit")] AdressViewModel adress)
         {
-            if (id != adress.AdressId)
+            if (adress.AdressId == null)
             {
                 return NotFound();
             }

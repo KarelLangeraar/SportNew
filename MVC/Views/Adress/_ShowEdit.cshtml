@@ -5,7 +5,7 @@
     <div>
         <h5>Adress</h5>
         <hr />
-        <form asp-action="Edit">
+        <form asp-action="ShowEdit" asp-controller="Adress">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="AdressId" />
         <dl class="row">
@@ -13,7 +13,7 @@
                 @Html.DisplayNameFor(model => model.Street)
             </dt>
             <dd class = "col-sm-10">
-                @Html.TextBoxFor(model => model.Street,new { @Value = "Street" , @disabled = !Model.Edit })
+                @Html.TextBoxFor(model => model.Street,new { @Value = "Street" , @readonly = !Model.Edit })
             </dd>
             <dt class = "col-sm-2">
                 @Html.DisplayNameFor(model => model.StreetNumber)

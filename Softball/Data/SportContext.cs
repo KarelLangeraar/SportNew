@@ -19,7 +19,7 @@ namespace Sport.Data
         public SportContext(DbContextOptions<SportContext> options): base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source=Data/Sport.db");
+            => options.UseSqlite("Data Source=Sport.db");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
