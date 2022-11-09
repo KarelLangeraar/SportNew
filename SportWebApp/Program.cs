@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 
 var connectionString = builder.Configuration.GetConnectionString("Sport");
-builder.Services.AddDbContext<SportContext>(options => options.UseSqlite(connectionString, b => b.MigrationsAssembly("Sport")));
+builder.Services.AddDbContext<SportContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Sport")));
 
 var app = builder.Build();
 

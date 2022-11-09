@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Sport.Migrations
+namespace SportData.Migrations
 {
-    public partial class DatabaseInit : Migration
+    public partial class InitDB : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,14 +13,14 @@ namespace Sport.Migrations
                 name: "Adress",
                 columns: table => new
                 {
-                    AdressId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Street = table.Column<string>(type: "TEXT", nullable: false),
-                    StreetNumber = table.Column<int>(type: "INTEGER", nullable: false),
-                    StreetNumberAddition = table.Column<string>(type: "TEXT", nullable: false),
-                    Zipcode = table.Column<string>(type: "TEXT", nullable: false),
-                    City = table.Column<string>(type: "TEXT", nullable: false),
-                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: false)
+                    AdressId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    StreetNumber = table.Column<int>(type: "int", nullable: false),
+                    StreetNumberAddition = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Zipcode = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,11 +31,11 @@ namespace Sport.Migrations
                 name: "Coach",
                 columns: table => new
                 {
-                    CoachID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    InactiveDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    CoachID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    InactiveDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "date", nullable: true)
                 },
                 constraints: table =>
@@ -47,12 +47,12 @@ namespace Sport.Migrations
                 name: "Player",
                 columns: table => new
                 {
-                    PlayerID = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    PlayerNumber = table.Column<int>(type: "INTEGER", nullable: true),
-                    InactiveDate = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: false),
-                    LastName = table.Column<string>(type: "TEXT", nullable: false),
+                    PlayerID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    PlayerNumber = table.Column<int>(type: "int", nullable: true),
+                    InactiveDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     BirthDate = table.Column<DateTime>(type: "date", nullable: true)
                 },
                 constraints: table =>
@@ -64,10 +64,10 @@ namespace Sport.Migrations
                 name: "Score",
                 columns: table => new
                 {
-                    ScoreId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    HomePoints = table.Column<int>(type: "INTEGER", nullable: false),
-                    GuestPoints = table.Column<int>(type: "INTEGER", nullable: false)
+                    ScoreId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    HomePoints = table.Column<int>(type: "int", nullable: false),
+                    GuestPoints = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -78,11 +78,11 @@ namespace Sport.Migrations
                 name: "Club",
                 columns: table => new
                 {
-                    ClubId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    AdressId = table.Column<int>(type: "INTEGER", nullable: true),
-                    InactiveDate = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    ClubId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AdressId = table.Column<int>(type: "int", nullable: false),
+                    InactiveDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -91,18 +91,19 @@ namespace Sport.Migrations
                         name: "FK_Club_Adress_AdressId",
                         column: x => x.AdressId,
                         principalTable: "Adress",
-                        principalColumn: "AdressId");
+                        principalColumn: "AdressId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Team",
                 columns: table => new
                 {
-                    TeamId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    TeamName = table.Column<string>(type: "TEXT", nullable: false),
-                    ClubId = table.Column<int>(type: "INTEGER", nullable: true),
-                    InactiveDate = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    TeamId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    TeamName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ClubId = table.Column<int>(type: "int", nullable: true),
+                    InactiveDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -111,15 +112,16 @@ namespace Sport.Migrations
                         name: "FK_Team_Club_ClubId",
                         column: x => x.ClubId,
                         principalTable: "Club",
-                        principalColumn: "ClubId");
+                        principalColumn: "ClubId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CoachTeam",
                 columns: table => new
                 {
-                    CoachID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TeamsTeamId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CoachID = table.Column<int>(type: "int", nullable: false),
+                    TeamsTeamId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,28 +131,28 @@ namespace Sport.Migrations
                         column: x => x.CoachID,
                         principalTable: "Coach",
                         principalColumn: "CoachID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CoachTeam_Team_TeamsTeamId",
                         column: x => x.TeamsTeamId,
                         principalTable: "Team",
                         principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Game",
                 columns: table => new
                 {
-                    GameId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Date = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    StartTime = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    HomeTeamTeamId = table.Column<int>(type: "INTEGER", nullable: false),
-                    GuestTeamTeamId = table.Column<int>(type: "INTEGER", nullable: false),
-                    ScoreId = table.Column<int>(type: "INTEGER", nullable: false),
-                    Innings = table.Column<int>(type: "INTEGER", nullable: false),
-                    Duration = table.Column<TimeSpan>(type: "TEXT", nullable: false)
+                    GameId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Date = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    HomeTeamTeamId = table.Column<int>(type: "int", nullable: false),
+                    GuestTeamTeamId = table.Column<int>(type: "int", nullable: false),
+                    ScoreId = table.Column<int>(type: "int", nullable: false),
+                    Innings = table.Column<int>(type: "int", nullable: false),
+                    Duration = table.Column<TimeSpan>(type: "time", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -160,27 +162,27 @@ namespace Sport.Migrations
                         column: x => x.ScoreId,
                         principalTable: "Score",
                         principalColumn: "ScoreId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Game_Team_GuestTeamTeamId",
                         column: x => x.GuestTeamTeamId,
                         principalTable: "Team",
                         principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Game_Team_HomeTeamTeamId",
                         column: x => x.HomeTeamTeamId,
                         principalTable: "Team",
                         principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PlayerTeam",
                 columns: table => new
                 {
-                    PlayersPlayerID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TeamsTeamId = table.Column<int>(type: "INTEGER", nullable: false)
+                    PlayersPlayerID = table.Column<int>(type: "int", nullable: false),
+                    TeamsTeamId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -190,23 +192,23 @@ namespace Sport.Migrations
                         column: x => x.PlayersPlayerID,
                         principalTable: "Player",
                         principalColumn: "PlayerID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PlayerTeam_Team_TeamsTeamId",
                         column: x => x.TeamsTeamId,
                         principalTable: "Team",
                         principalColumn: "TeamId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "Training",
                 columns: table => new
                 {
-                    TrainingId = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Datum = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    TeamId = table.Column<int>(type: "INTEGER", nullable: true)
+                    TrainingId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Datum = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    TeamId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -215,15 +217,16 @@ namespace Sport.Migrations
                         name: "FK_Training_Team_TeamId",
                         column: x => x.TeamId,
                         principalTable: "Team",
-                        principalColumn: "TeamId");
+                        principalColumn: "TeamId",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CoachGame",
                 columns: table => new
                 {
-                    CoachesCoachID = table.Column<int>(type: "INTEGER", nullable: false),
-                    GamesGameId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CoachesCoachID = table.Column<int>(type: "int", nullable: false),
+                    GamesGameId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -233,21 +236,21 @@ namespace Sport.Migrations
                         column: x => x.CoachesCoachID,
                         principalTable: "Coach",
                         principalColumn: "CoachID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CoachGame_Game_GamesGameId",
                         column: x => x.GamesGameId,
                         principalTable: "Game",
                         principalColumn: "GameId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "GamePlayer",
                 columns: table => new
                 {
-                    GamesGameId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PlayersPlayerID = table.Column<int>(type: "INTEGER", nullable: false)
+                    GamesGameId = table.Column<int>(type: "int", nullable: false),
+                    PlayersPlayerID = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -257,21 +260,21 @@ namespace Sport.Migrations
                         column: x => x.GamesGameId,
                         principalTable: "Game",
                         principalColumn: "GameId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_GamePlayer_Player_PlayersPlayerID",
                         column: x => x.PlayersPlayerID,
                         principalTable: "Player",
                         principalColumn: "PlayerID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "CoachTraining",
                 columns: table => new
                 {
-                    CoachID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrainingId = table.Column<int>(type: "INTEGER", nullable: false)
+                    CoachID = table.Column<int>(type: "int", nullable: false),
+                    TrainingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -281,21 +284,21 @@ namespace Sport.Migrations
                         column: x => x.CoachID,
                         principalTable: "Coach",
                         principalColumn: "CoachID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_CoachTraining_Training_TrainingId",
                         column: x => x.TrainingId,
                         principalTable: "Training",
                         principalColumn: "TrainingId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
                 name: "PlayerTraining",
                 columns: table => new
                 {
-                    PlayerID = table.Column<int>(type: "INTEGER", nullable: false),
-                    TrainingId = table.Column<int>(type: "INTEGER", nullable: false)
+                    PlayerID = table.Column<int>(type: "int", nullable: false),
+                    TrainingId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -305,13 +308,13 @@ namespace Sport.Migrations
                         column: x => x.PlayerID,
                         principalTable: "Player",
                         principalColumn: "PlayerID",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_PlayerTraining_Training_TrainingId",
                         column: x => x.TrainingId,
                         principalTable: "Training",
                         principalColumn: "TrainingId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

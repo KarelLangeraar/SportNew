@@ -14,7 +14,7 @@ namespace Sport.Data
         public SportContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<SportContext>();
-            optionsBuilder.UseSqlite("Data Source=Data/Sport.db");
+            optionsBuilder.UseSqlServer();
 
             return new SportContext(optionsBuilder.Options);
         }

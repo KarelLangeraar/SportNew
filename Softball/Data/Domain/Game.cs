@@ -31,6 +31,8 @@ namespace Sport.Models
             Score = new Score();
             Innings = 0;
             Duration = TimeSpan.Zero;
+            Players = new List<Player>();
+            Coaches = new List<Coach>();
         }
 
         public void AddInning()

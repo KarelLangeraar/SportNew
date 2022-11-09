@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 using Sport.Models;
 using Sport.Models.Interfaces;
+using System.Configuration;
 
 namespace Sport.Data
 {
@@ -16,10 +17,10 @@ namespace Sport.Data
         public DbSet<Score> Score { get; set; }
         public DbSet<Adress> Adress { get; set; }
 
-        public SportContext(DbContextOptions<SportContext> options): base(options) { }
+        public SportContext(DbContextOptions<SportContext> options) : base(options) { }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-            => options.UseSqlite("Data Source=Sport.db");
+        => options.UseSqlServer("Server=(localdb)\\mssqllocaldb; Database=Sport; MultipleActiveResultSets=true; Trusted_Connection=True;");
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -30,6 +31,12 @@ namespace Sport.Data
 
             modelBuilder.Entity<Coach>()
                 .Property(e => e.BirthDate).HasColumnType("date");
+
+            // Global turn off delete behaviour on foreign keys
+            foreach (var relationship in modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
 
     }

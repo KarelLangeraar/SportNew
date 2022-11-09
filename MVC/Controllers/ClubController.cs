@@ -22,7 +22,7 @@ namespace MVC.Controllers
         // GET: Club
         public async Task<IActionResult> Index()
         {
-              return _context.Club != null ? 
+            return _context.Club != null ? 
                           View(await _context.Club.ToListAsync()) :
                           Problem("Entity set 'SportContext.Club'  is null.");
         }

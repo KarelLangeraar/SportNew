@@ -10,7 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 var connectionString = builder.Configuration.GetConnectionString("Sport");
-builder.Services.AddDbContext<Sport.Data.SportContext>(options => options.UseSqlite(connectionString, b => b.MigrationsAssembly("Sport")));
+builder.Services.AddDbContext<Sport.Data.SportContext>(options => options.UseSqlServer(connectionString, b => b.MigrationsAssembly("Sport")));
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 var app = builder.Build();
 

@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Sport.Data.Repositories
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
@@ -54,7 +55,7 @@ namespace Sport.Data.Repositories
 
         public IEnumerable<TEntity> GetAll()
         {
-            return _entities.ToList();
+                return _entities.ToList();
         }
 
 
